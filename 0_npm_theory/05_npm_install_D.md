@@ -28,5 +28,3 @@ npm install -D jest
 ```
 
 This command installs `jest` as a development dependency, meaning it is only needed during development and testing.
-
-
