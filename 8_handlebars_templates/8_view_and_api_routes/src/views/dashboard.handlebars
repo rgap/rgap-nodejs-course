@@ -1,0 +1,13 @@
+<section>
+  <p>{{info}}</p>
+  {{#if products}}
+    <h2>Products</h2>
+    <ul>
+      {{#each products}}
+        <li>{{this.name}} - ${{this.price}}</li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <p>No products available.</p>
+  {{/if}}
+</section>
