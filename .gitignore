@@ -193,3 +193,7 @@ dist
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,node,visualstudiocode
+
+## My own additions
+# Ignore all output_structure.txt files in every subdirectory
+output_structure.txt

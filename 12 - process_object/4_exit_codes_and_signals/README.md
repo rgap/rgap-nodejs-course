@@ -2,47 +2,67 @@
 
 ## 🧠 About This Folder
 
-This module explores how Node.js processes handle **exit codes** and **OS signals** like `SIGINT` and `SIGTERM`. These features are critical for writing production-ready applications that can terminate gracefully or signal errors to the system.
+This module explores how Node.js processes handle:
 
----
+- **Exit codes** (`process.exit(code)`)
+- **OS signals** (`SIGINT`, `SIGTERM`, `SIGHUP`, etc.)
+- **Process lifecycle events** (`beforeExit`, `exit`)
+- **Uncaught exceptions** (`uncaughtException`)
+- **Unhandled promise rejections** (`unhandledRejection`)
 
-## 🧰 Real-World Use Cases
-
-### 🚀 DevOps
-
-- **CI/CD Feedback**:
-
-  - Use `process.exit(1)` to halt a pipeline step when validation fails.
-  - Exit code 0 signals success to platforms like GitHub Actions or GitLab CI.
-
-- **Container Lifecycle**:
-
-  - Handle `SIGTERM` in Docker or Kubernetes to close HTTP servers cleanly.
-  - Avoid leaving zombie processes or corrupt state.
-
-- **Process managers (PM2, forever)**:
-  - React to signals and logs to auto-restart or scale down services.
-
-### 🛠 Web Development
-
-- **API Servers**:
-
-  - Prevent in-flight requests from being dropped.
-  - Log events for error monitoring services before termination.
-
-- **Database connections**:
-  - Close DB pools to avoid connection leaks when shutting down Express apps.
+These features are critical for writing production-ready applications that can terminate gracefully, clean up resources, and signal errors to the system.
 
 ---
 
 ## 🔍 Key Concepts
 
-- `process.exit(code)` lets you define success (0) or failure (non-zero).
-- Signals like `SIGINT` and `SIGTERM` can be intercepted using `process.on()`.
-- Graceful shutdown patterns avoid crashing and support production reliability.
+- **Exit Codes**  
+  Signal success (`0`) or failure (`>0`) to the OS or calling scripts.
+
+- **OS Signals**  
+  Intercept termination requests (`SIGINT`, `SIGTERM`, `SIGHUP`, etc.) for cleanup.
+
+- **Process Lifecycle Events**
+
+  - `beforeExit`: emitted when the event loop is empty; you can schedule more work here.
+  - `exit`: emitted just before the process exits; only synchronous cleanup is allowed.
+
+- **Error Handling**
+
+  - `uncaughtException`: last-chance handler for uncaught errors (process should be restarted afterward).
+  - `unhandledRejection`: catches promise rejections without a `.catch()`.
+
+- **Common Resources to Clean Up**
+  - HTTP servers
+  - Database connections (e.g., MongoDB, PostgreSQL pools)
+  - WebSocket / Socket.io servers
+  - File streams (log files, uploads)
+  - Message-queue clients (RabbitMQ, Kafka)
+  - Cache clients (Redis, Memcached)
+  - Timers and intervals
+
+---
+
+## 🧰 Real-World Use Cases
+
+### 🚀 DevOps & Containers
+
+- **CI/CD pipelines** use exit codes to determine pass/fail of build and deploy steps.
+- **Docker & Kubernetes** send `SIGTERM` to containers to trigger graceful shutdown before killing.
+
+### 🛠 Production Services
+
+- **API servers** avoid dropping in-flight requests by closing the server to new connections and waiting for active ones to finish.
+- **Databases** ensure all writes are committed or rolled back before shutting down.
+- **Logging & Monitoring** flush buffers and close file streams to preserve logs.
 
 ---
 
 ## ✅ Summary
 
-This folder demonstrates low-level lifecycle handling that every modern Node.js app should implement — especially when building robust backend services or automating tasks in CI/CD.
+By combining exit codes, signal handlers, lifecycle events, and exception/rejection handling, you can build Node.js services that:
+
+1. Clean up all open resources (servers, DBs, streams).
+2. Log and surface errors in a controlled way.
+3. Exit with appropriate status codes for automation and monitoring.
+4. Maintain reliability and predictability in production environments.
