@@ -1,0 +1,13 @@
+{
+  "name": "basic-pnpm-project",
+  "version": "1.0.0",
+  "description": "A basic project using pnpm",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"No tests defined\" && exit 0"
+  },
+  "keywords": ["pnpm", "basic", "example"],
+  "author": "Your Name",
+  "license": "MIT"
+}

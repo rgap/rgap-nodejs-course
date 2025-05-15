@@ -1,0 +1,16 @@
+{
+  "name": "basic-corepack-project",
+  "version": "1.0.0",
+  "description": "Project using Corepack to manage package managers",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "corepack",
+    "node",
+    "example"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

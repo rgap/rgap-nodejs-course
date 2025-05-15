@@ -1,0 +1,21 @@
+{
+  "name": "advanced-scripts-project",
+  "version": "1.0.0",
+  "description": "Demonstrates advanced npm script usage",
+  "main": "script.js",
+  "scripts": {
+    "start": "node script.js",
+    "dev": "nodemon script.js",
+    "lint": "eslint .",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && echo \"Building project...\" && mkdir dist && cp script.js dist/",
+    "prestart": "echo \"Preparing to start...\"",
+    "poststart": "echo \"App started!\""
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "nodemon": "^3.0.1"
+  },
+  "author": "Your Name",
+  "license": "MIT"
+}
