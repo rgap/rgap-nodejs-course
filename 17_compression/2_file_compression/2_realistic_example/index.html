@@ -1,0 +1,27 @@
+<!--
+🌐 Static HTML that loads a pre-compressed JavaScript file (app.js.gz)
+
+📦 Notes:
+- This file expects the server to serve `app.js.gz` with:
+    Content-Encoding: gzip
+    Content-Type: application/javascript
+- This is configured server-side (via Nginx, Apache, or CDN settings)
+
+🛠️ Use Case:
+- Host compressed assets to reduce initial JS bundle size
+- Especially important for large apps or slow networks
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Gzip JS Example</title>
+  </head>
+  <body>
+    <h1>📦 Loading Compressed JS</h1>
+
+    <!-- The server must map /assets/app.js → app.js.gz if supported -->
+    <script src="/assets/app.js"></script>
+  </body>
+</html>
