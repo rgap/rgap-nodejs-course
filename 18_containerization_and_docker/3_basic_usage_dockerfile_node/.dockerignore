@@ -1,0 +1,4 @@
+# Ignore files/folders we don’t want in the container image
+node_modules
+.env
+.DS_Store

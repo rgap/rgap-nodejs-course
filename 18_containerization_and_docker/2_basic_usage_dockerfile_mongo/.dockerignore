@@ -1,0 +1,6 @@
+# 🚫 .dockerignore
+# We are not copying any files, but this shows how to prevent extra files from being included.
+
+*.log
+*.env
+.DS_Store

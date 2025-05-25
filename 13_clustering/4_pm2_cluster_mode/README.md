@@ -83,13 +83,58 @@ npm install -g pm2
 # Start the server in cluster mode (1 worker per core)
 pm2 start pm2_generate_report.js -i max
 
-# View live logs
+# OR start in fork mode (single process)
+pm2 start pm2_generate_report.js --name report-server
+
+# Start with environment variables
+pm2 start pm2_generate_report.js --env production
+
+# View live logs (stdout and stderr)
 pm2 logs
 
-# See running processes
+# Filter logs for a specific process
+pm2 logs report-server
+
+# Tail logs continuously
+pm2 logs --lines 100
+
+# Monitor resource usage in real-time (CPU, memory)
+pm2 monit
+
+# See running PM2 processes and statuses
 pm2 list
 
-# Stop and remove all PM2 processes
+# Get detailed info on one process
+pm2 describe report-server
+
+# Restart all processes
+pm2 restart all
+
+# Restart a specific process by name or ID
+pm2 restart report-server
+
+# Reload processes (zero-downtime for cluster mode)
+pm2 reload all
+
+# Stop a specific process
+pm2 stop report-server
+
+# Stop all processes
+pm2 stop all
+
+# Delete a specific process
+pm2 delete report-server
+
+# Delete all processes
 pm2 delete all
+
+# Save current process list for resurrection on reboot
+pm2 save
+
+# Startup script to resurrect processes on boot
+pm2 startup
+
+# Kill the PM2 daemon entirely
 pm2 kill
+
 ```
