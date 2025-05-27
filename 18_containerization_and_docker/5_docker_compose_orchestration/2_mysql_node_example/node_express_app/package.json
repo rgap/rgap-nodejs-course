@@ -1,0 +1,11 @@
+{
+  "name": "compose-node-api",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql": "^2.18.1"
+  }
+}
