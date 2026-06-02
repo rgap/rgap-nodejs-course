@@ -1,0 +1,11 @@
+# Ignore generated database files — never commit these
+db/*.sqlite3
+db/*.sqlite3-shm
+db/*.sqlite3-wal
+db/schema.sql
+
+# Ignore real .env files — use .env.example for reference
+.env
+
+# Ignore Node.js dependencies
+node_modules/

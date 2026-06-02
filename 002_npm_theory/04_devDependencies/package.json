@@ -1,0 +1,9 @@
+{
+  "name": "dev-dependencies-demo",
+  "version": "1.0.0",
+  "description": "Demonstration of devDependencies",
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "devDependencies": {}
+}

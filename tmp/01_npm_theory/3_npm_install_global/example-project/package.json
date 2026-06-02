@@ -1,0 +1,9 @@
+{
+  "name": "npx-global-example",
+  "version": "1.0.0",
+  "description": "Example showing local execution vs npx execution",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  }
+}

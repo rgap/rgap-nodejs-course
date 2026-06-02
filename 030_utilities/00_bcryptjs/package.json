@@ -1,0 +1,12 @@
+{
+  "name": "00_bcryptjs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Simple bcryptjs demo for password hashing and login verification",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3"
+  }
+}

@@ -1,0 +1,7 @@
+# Ignore generated SQLite database files
+*.sqlite3
+*.sqlite3-shm
+*.sqlite3-wal
+
+# Ignore Node.js dependencies
+node_modules/

@@ -1,0 +1,2 @@
+This is the content of notes.txt.
+It was created in advance for you to read in this exercise.

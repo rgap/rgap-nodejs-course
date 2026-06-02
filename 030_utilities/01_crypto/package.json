@@ -1,0 +1,9 @@
+{
+  "name": "01_crypto",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Simple Node.js crypto module demo",
+  "scripts": {
+    "start": "node app.js"
+  }
+}

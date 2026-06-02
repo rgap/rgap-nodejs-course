@@ -1,0 +1,151 @@
+└── ./
+    └── dotenv_best_practices.md
+    └── 1_example/
+        └── package.json
+        └── .env
+        └── dotenv_example.js
+    └── 2_multiple_envs/
+        └── .env.production
+        └── .env.test
+        └── package.json
+        └── dotenv_multiple_envs.js
+        └── .env.development
+
+Contents of dotenv_best_practices.md:
+
+# ✅ BEST PRACTICES FOR ENVIRONMENT VARIABLES (.env files)
+
+1. 📁 NEVER COMMIT `.env` FILES TO VERSION CONTROL
+   - Add `.env*` to your `.gitignore`.
+   - Use `.env.example` to show the required keys for collaborators.
+
+2. 🔒 TREAT `.env` DATA AS SENSITIVE
+   - Use a secret manager (like AWS Secrets Manager, Vault, or 1Password CLI) in production.
+   - Avoid logging secrets accidentally.
+
+3. 🧪 VALIDATE VARIABLES AT STARTUP
+   - Use libraries like `envalid` or `joi` to check that all required keys exist.
+
+4. 📦 USE `dotenv` ONLY IN NON-PRODUCTION
+   - In production, inject variables through cloud environments or container engines.
+   - Use `dotenv` with caution in Dockerized deployments.
+
+5. 🧬 KEEP ENVIRONMENTS SEPARATE
+   - Use `.env.development`, `.env.test`, and `.env.production` to isolate settings.
+   - Don’t reuse credentials across environments.
+
+
+Contents of 1_example/package.json:
+
+{
+  "dependencies": {
+    "dotenv": "^16.5.0"
+  }
+}
+
+
+Contents of 1_example/.env:
+
+API_KEY=abcd1234
+NODE_ENV=development
+
+Contents of 1_example/dotenv_example.js:
+
+/**
+ * 📦 THEORY: Using dotenv to load environment variables
+ *
+ * The `dotenv` package allows you to load environment variables from a `.env` file
+ * into `process.env`. This is useful for local development, staging, and CI.
+ *
+ * ✅ Installation:
+ *     npm install dotenv
+ *
+ * ✅ Example `.env` file:
+ *     API_KEY=abcd1234
+ *     NODE_ENV=development
+ *
+ * ✅ Usage in code:
+ *     require("dotenv").config();
+ *
+ * This loads variables into process.env before accessing them.
+ *
+ * ⚠️ SECURITY WARNING: Never commit `.env` files with secrets to version control!
+ *
+ * Environment variables allow you to:
+ *  - Avoid hardcoding credentials or configuration
+ *  - Customize behavior based on deployment environment (dev, prod, etc.)
+ *  - Integrate with OS-level or CI/CD settings
+ */
+
+require("dotenv").config();
+
+console.log("🔐 dotenv API_KEY:", process.env.API_KEY);
+console.log("🌱 dotenv NODE_ENV:", process.env.NODE_ENV);
+
+
+Contents of 2_multiple_envs/.env.production:
+
+API_KEY=abcd1234
+NODE_ENV=production
+
+
+Contents of 2_multiple_envs/.env.test:
+
+API_KEY=abcd1234
+NODE_ENV=test
+
+
+Contents of 2_multiple_envs/package.json:
+
+{
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "dotenv-flow": "^4.1.0"
+  }
+}
+
+
+Contents of 2_multiple_envs/dotenv_multiple_envs.js:
+
+/**
+ * 🌐 THEORY: Using multiple .env files for different environments
+ *
+ * It's common to use separate `.env` files for each environment, such as:
+ *   - `.env.development`
+ *   - `.env.production`
+ *   - `.env.test`
+ *
+ * These files can be loaded conditionally based on `process.env.NODE_ENV`,
+ * allowing clean separation of configuration.
+ *
+ * ✅ Example folder structure:
+ *     .env.development
+ *     .env.production
+ *     .env.test
+ *
+ * ✅ Use `dotenv-flow` or custom logic to load the correct file:
+ *     npm install dotenv dotenv-flow
+ *
+ *     // OR manually:
+ *     require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
+ *
+ * 🛠 Common use case:
+ *     NODE_ENV=production node dotenv_multiple_envs.js
+ *
+ * 📌 Be sure to handle fallback behavior if the file doesn't exist.
+ */
+
+const path = `.env.${process.env.NODE_ENV || "development"}`;
+require("dotenv").config({ path });
+
+console.log("📁 Loaded from:", path);
+console.log("🔐 API_KEY:", process.env.API_KEY);
+console.log("🔧 NODE_ENV:", process.env.NODE_ENV);
+
+
+Contents of 2_multiple_envs/.env.development:
+
+API_KEY=abcd1234
+NODE_ENV=development
+
+

@@ -1,0 +1,14 @@
+{
+  "name": "semver-example",
+  "version": "1.0.0",
+  "description": "Example showing caret, tilde, and exact version declarations",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "4.19.2",
+    "lodash": "^4.17.20",
+    "dotenv": "~16.4.0"
+  }
+}

@@ -1,0 +1,2 @@
+Hello from the file system!
+This text was read using async/await — the cleanest async syntax in Node.js.

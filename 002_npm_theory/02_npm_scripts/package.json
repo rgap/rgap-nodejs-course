@@ -1,0 +1,9 @@
+{
+  "name": "npm-scripts-demo",
+  "version": "1.0.0",
+  "description": "Demonstration of NPM scripts",
+  "scripts": {
+    "start": "node app.js",
+    "say-hi": "echo '👋 Hi from your custom npm script!'"
+  }
+}

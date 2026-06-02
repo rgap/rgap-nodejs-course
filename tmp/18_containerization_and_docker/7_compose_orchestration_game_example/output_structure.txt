@@ -1,0 +1,127 @@
+└── ./
+    └── Dockerfile
+    └── README.md
+    └── docker-compose.yml
+    └── game_server/
+        └── package.json
+        └── src/
+            └── index.js
+
+Contents of Dockerfile:
+
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY package.json ./
+RUN npm install
+
+COPY ./src ./src
+
+EXPOSE 3000
+
+CMD ["node", "src/index.js"]
+
+
+Contents of README.md:
+
+# 🎮 Game Server with Auto-Restart via Docker Compose
+
+This example replaces a shell-based game server with a **Node.js Express server** and uses Docker Compose to restart it automatically when it stops.
+
+---
+
+## 📁 Folder Structure
+
+```
+compose_orchestration_example/
+├── docker-compose.yml
+└── game_server/
+    ├── Dockerfile
+    ├── package.json
+    └── src/
+        └── index.js
+```
+
+---
+
+## ▶️ How to Run It
+
+```bash
+docker compose up
+```
+
+You’ll see the game server start, run for 10 seconds, then shut down... and restart again automatically.
+
+Visit it at: [http://localhost:3000](http://localhost:3000)
+
+---
+
+## 🔁 Auto-Restart Explained
+
+```yaml
+restart: always
+```
+
+This tells Docker Compose to restart the container every time it exits — simulating what a manual orchestrator would do.
+
+---
+
+## 🧠 Use Cases
+
+- Crash recovery
+- Periodic maintenance reboots
+- Development preview of orchestration behavior
+
+
+Contents of docker-compose.yml:
+
+version: "3.8"
+
+services:
+  game-server:
+    build: ./game_server
+    container_name: game-server
+    ports:
+      - "3000:3000"
+    restart: always
+
+
+Contents of game_server/package.json:
+
+{
+  "name": "game-server",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
+
+
+Contents of game_server/src/index.js:
+
+const express = require("express");
+const app = express();
+
+const port = 3000;
+let tick = 0;
+
+app.get("/", (_req, res) => {
+  tick++;
+  res.send(`🎮 Game server running. Request #${tick}`);
+});
+
+// Simulate automatic shutdown for testing restart
+setTimeout(() => {
+  console.log("🛑 Game server shutting down for simulated maintenance...");
+  process.exit(0); // or use 1 to simulate a crash
+}, 10000); // 10 seconds
+
+app.listen(port, () => {
+  console.log(`🚀 Game server listening on http://localhost:${port}`);
+});
+
+

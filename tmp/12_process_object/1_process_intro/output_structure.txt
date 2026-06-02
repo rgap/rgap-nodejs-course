@@ -1,0 +1,97 @@
+└── ./
+    └── README.md
+    └── 3_process_arch.js
+    └── 1_process_version.js
+    └── 2_process_platform.js
+
+Contents of README.md:
+
+## The process object
+
+The `process` object is a **global** object in Node.js that provides comprehensive information and control over the currently executing Node.js process. It allows access to:
+
+- Environment variables
+- CPU architecture
+- Platform-specific behavior
+- Process arguments
+- Uptime, memory, and other runtime metrics
+
+## ✅ When to Use These Properties
+
+- Debugging platform-specific bugs
+- Logging system information
+- Conditional logic in CLI tools or installers
+- Avoiding compatibility issues in cross-platform apps
+
+
+Contents of 3_process_arch.js:
+
+/**
+ * 🧠 THEORY: process.arch
+ *
+ * `process.arch` provides a string representing the processor architecture
+ * that the Node.js binary was compiled for. It's important to note this may not
+ * reflect the architecture of the operating system if running under emulation.
+ *
+ * Common values include:
+ *   - 'x64'     → 64-bit systems
+ *   - 'arm'     → ARM architecture (e.g., Raspberry Pi)
+ *   - 'arm64'   → 64-bit ARM (e.g., Apple Silicon, newer phones)
+ *   - 'ia32'    → 32-bit Intel
+ *
+ * 📦 Use Case: Helpful when building native modules or deploying binaries
+ * that depend on specific processor features.
+ *
+ * 🔐 SECURITY NOTE: While `process.arch` may influence installation or deployment logic,
+ * avoid relying on it alone for security-sensitive decisions.
+ */
+
+console.log("🧬 CPU architecture:", process.arch);
+
+
+Contents of 1_process_version.js:
+
+// 01_intro_to_process/process_version.js
+
+/**
+ * 🧠 THEORY: process.version
+ *
+ * The `process` object in Node.js is a global object that provides information
+ * and control over the current Node.js process.
+ *
+ * One of the most basic properties is `process.version`, which returns the
+ * Node.js version string (e.g., 'v18.17.1'). This can be useful for
+ * debugging, enforcing compatibility, or logging.
+ *
+ * The `process` object became globally available in the very first versions
+ * of Node.js, and `process.version` has existed since around Node.js v0.1.x.
+ */
+
+console.log("🔢 Node.js version:", process.version);
+
+
+Contents of 2_process_platform.js:
+
+/**
+ * 🧠 THEORY: process.platform
+ *
+ * `process.platform` returns a string identifying the operating system platform
+ * on which the Node.js process is running. It’s especially useful for writing
+ * cross-platform scripts (e.g., using different commands or paths in Windows vs Unix).
+ *
+ * Common values include:
+ *   - 'win32'   → Windows
+ *   - 'darwin'  → macOS
+ *   - 'linux'   → Linux
+ *   - 'aix', 'freebsd', 'openbsd', etc. → Other Unix flavors
+ *
+ * 🔍 This value is determined at build time of the Node.js binary.
+ * It is not affected by runtime environment variables.
+ *
+ * 📦 Use Case: You might check `process.platform` to conditionally execute
+ * platform-specific commands in build scripts or CLI tools.
+ */
+
+console.log("🖥️ Running on platform:", process.platform);
+
+

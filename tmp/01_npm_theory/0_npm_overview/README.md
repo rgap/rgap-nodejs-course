@@ -1,0 +1,215 @@
+# Overview of npm (Node Package Manager)
+
+npm is the default package manager for the JavaScript runtime environment Node.js. It facilitates sharing, reusing, and managing third-party code in your projects.
+
+---
+
+## Theory & Core Concepts
+
+### 1. What is npm?
+
+**npm** stands for **Node Package Manager**.
+
+It is the default package manager used with **Node.js**. Its main purpose is to help developers install, share, update, remove, and manage reusable JavaScript code.
+
+It consists of three distinct components:
+
+1. **The Website**: A portal to discover packages, set up profiles, and manage access.
+2. **The Registry**: A massive public database containing open-source JavaScript packages and their metadata.
+3. **The Command-Line Interface (CLI)**: The command `npm` that runs in your terminal, allowing you to interact with the registry and manage local packages.
+
+### 2. The Website
+
+The npm website is the public portal where developers can search for packages, read documentation, check versions, and manage npm accounts.
+
+* **Link**: [https://www.npmjs.com](https://www.npmjs.com)
+
+For example, a backend developer may search for packages like:
+
+* `express`
+* `cors`
+* `dotenv`
+
+On a package page, you can usually find:
+
+* Package name
+* Description
+* Installation command
+* README documentation
+* Version history
+* Weekly downloads
+* License
+* Repository link
+* Dependencies
+* Maintainers
+
+**Example package pages**:
+
+* Express: [https://www.npmjs.com/package/express](https://www.npmjs.com/package/express)
+* CORS: [https://www.npmjs.com/package/cors](https://www.npmjs.com/package/cors)
+* dotenv: [https://www.npmjs.com/package/dotenv](https://www.npmjs.com/package/dotenv)
+
+Simple mental model:
+
+```txt
+npm website = package catalog
+```
+
+---
+
+### 3. The Registry
+
+The npm registry is the online database where npm packages are stored.
+
+* **Link**: [https://registry.npmjs.org](https://registry.npmjs.org)
+
+When you run:
+
+```bash
+npm install express
+```
+
+npm contacts the registry, finds the Express package, downloads it, and saves it inside your project.
+
+The registry stores information such as:
+
+* Package code
+* Package metadata
+* Versions
+* Dependencies
+* Author information
+* License information
+* README content
+
+Simple mental model:
+
+```txt
+npm registry = package warehouse
+```
+
+---
+
+### 4. The Command-Line Interface (CLI)
+
+The npm CLI is the terminal tool called `npm`.
+
+* **Documentation**: [https://docs.npmjs.com/cli](https://docs.npmjs.com/cli)
+
+This is the part you use in the terminal.
+
+Examples:
+
+```bash
+npm init
+npm install express
+npm uninstall express
+npm update
+npm run dev
+npm publish
+```
+
+The CLI allows you to:
+
+* Create a new Node.js project
+* Install packages
+* Remove packages
+* Update packages
+* Run scripts
+* Publish packages
+* Manage project dependencies
+
+Simple mental model:
+
+```txt
+npm CLI = package controller
+```
+
+---
+
+### 5. How the Components Work Together
+
+Example:
+
+```bash
+npm install express
+```
+
+Behind that command:
+
+```txt
+Terminal command
+        ↓
+npm CLI receives the command
+        ↓
+npm contacts the registry
+        ↓
+npm finds the express package
+        ↓
+npm downloads express and its dependencies
+        ↓
+npm saves them in node_modules
+        ↓
+npm updates package.json
+        ↓
+npm updates package-lock.json
+```
+
+---
+
+## Simple Backend Example
+
+```bash
+mkdir my-backend
+cd my-backend
+npm init -y
+npm install express cors dotenv
+```
+
+After that, your project may look like this:
+
+```txt
+my-backend/
+├── node_modules/
+├── package.json
+├── package-lock.json
+└── index.js
+```
+
+Each part has a role:
+
+| Part                | Purpose                        |
+| ------------------- | ------------------------------ |
+| npm website         | Search and read about packages |
+| npm registry        | Stores the packages            |
+| npm CLI             | Installs and manages packages  |
+| `package.json`      | Describes project dependencies |
+| `package-lock.json` | Locks exact installed versions |
+| `node_modules`      | Stores downloaded package code |
+
+
+## Core CLI Commands
+
+To manage packages and projects, you will use these basic terminal commands:
+
+* **`npm init`**: Initialize a new project and run an interactive wizard to generate a `package.json` file.
+* **`npm install <package>`**: Download and install a specific library (alias: `npm i`).
+* **`npm uninstall <package>`**: Remove an installed library from the project.
+* **`npm update <package>`**: Update a package to the latest version permitted by version constraints.
+* **`npm run <script>`**: Execute custom script tasks defined inside `package.json`.
+* **`npm publish`**: Upload your own package to the public registry.
+
+---
+
+## Example Project
+
+To see the output of a default initialization in action, navigate to the `example-project` folder inside this directory.
+
+This folder contains a clean `package.json` file generated by running:
+
+```bash
+npm init -y
+```
+
+The `npm init` command initializes a new Node.js project by asking you several configuration questions. Appending the `-y` (or `--yes`) flag skips this interactive wizard and automatically accepts the default values for every field, instantly generating a basic `package.json` file.
+
+You can inspect the `package.json` file inside the folder to see the default project structure.
