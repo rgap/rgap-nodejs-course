@@ -1,0 +1,12 @@
+{
+  "name": "02_validation_with_zod",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Schema-based runtime data validation with Zod",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "zod": "^4.4.3"
+  }
+}

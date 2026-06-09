@@ -1,0 +1,12 @@
+{
+  "name": "03_custom_error_messages",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Custom runtime validation error messages with Zod",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "zod": "^4.4.3"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "00_what_is_validation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Smallest example of runtime data validation",
+  "scripts": {
+    "start": "node app.js"
+  }
+}

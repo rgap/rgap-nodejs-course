@@ -1,4 +1,4 @@
-# 00_bcryptjs: Hashing Passwords with `bcryptjs`
+# Hashing Passwords with `bcryptjs`
 
 This project shows how to use **`bcryptjs`** to hash passwords before storing them and how to verify a login attempt later.
 
@@ -84,11 +84,3 @@ You should see:
 - never store plain-text passwords
 - always hash passwords before saving them
 - always compare with the hash instead of comparing raw strings
-
----
-
-## 7. Clean Up
-
-```bash
-rm -rf node_modules package-lock.json
-```

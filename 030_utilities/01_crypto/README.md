@@ -1,4 +1,4 @@
-# 01_crypto: Using Node's Built-in `crypto` Module
+# Using Node's Built-in `crypto` Module
 
 This project shows how to use Node.js's built-in **`crypto`** module for common utility tasks:
 
@@ -80,9 +80,3 @@ You should see:
 `crypto.createHash()` is useful for hashing general data.
 
 For password storage, use a password hashing tool such as **`bcryptjs`** from lesson `00_bcryptjs`, not a plain fast hash like SHA-256 by itself.
-
----
-
-## 7. Clean Up
-
-This lesson creates no extra files.
