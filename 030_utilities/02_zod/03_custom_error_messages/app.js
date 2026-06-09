@@ -14,26 +14,36 @@ const userSchema = z.object({
     .min(18, { error: 'Age must be 18 or older.' }),
 });
 
-const user = {
-  username: 'bo',
-  email: 'not-an-email',
-  age: 15,
-};
+const users = [
+  {
+    username: 'bo',
+    email: 'not-an-email',
+    age: 15,
+  },
+  {
+    username: 123,
+    email: '',
+    age: 'seventeen',
+  },
+];
 
-const result = userSchema.safeParse(user);
+for (const user of users) {
+  const result = userSchema.safeParse(user);
 
-console.log('Input:');
-console.log(user);
+  console.log('Input:');
+  console.log(user);
 
-if (result.success) {
-  console.log('\nValid user:');
-  console.log(result.data);
-} else {
-  console.log('\nInvalid user:');
+  if (result.success) {
+    console.log('\nValid user:');
+    console.log(result.data);
+  } else {
+    console.log('\nInvalid user:');
 
-  for (const issue of result.error.issues) {
-    const field = issue.path.join('.') || 'root';
-    console.log(`- ${field}: ${issue.message}`);
+    for (const issue of result.error.issues) {
+      const field = issue.path.join('.') || 'root';
+      console.log(`- ${field}: ${issue.message}`);
+    }
   }
-}
 
+  console.log('');
+}
